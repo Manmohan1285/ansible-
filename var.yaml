@@ -3,9 +3,7 @@
   hosts: all
   vars:
     URL: play.cricket.com
-    PROJECT: cricket
-  vars_files:
-    - example-vars.yml  
+    PROJECT: cricket  
   tasks:
     - name: print url
       debug:
@@ -15,3 +13,12 @@
         msg: url = {{URL}}
       vars:
         URL: ipl suspended by due to corona.com
+- name: demo on dyanamic vars
+  hosts: all
+  tasks:
+    - name: gather date
+      shell: date +%F
+      register: out
+    - name: print date
+      debug:
+        msg: date = {{OUT}} 
