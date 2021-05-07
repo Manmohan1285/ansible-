@@ -17,7 +17,7 @@
     - name: download the foo.conf
       get_url:
         url: https://github.com/zelar-soft-roboshop/frontend/archive/main.zip
-        dist: /tmp/frontend.zip
+        dest: /tmp/frontend.zip
 
     - name: Download file and force basic auth
       get_url:
