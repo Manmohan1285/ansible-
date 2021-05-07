@@ -1,0 +1,9 @@
+---
+- name: set up robho shop project
+  hosts: all
+  tasks:
+    - name: apt update
+      apt:
+        name: nginx
+        update_cache: yes
+        
