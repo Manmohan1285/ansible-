@@ -6,4 +6,31 @@
       apt:
         name: nginx
         update_cache: yes
-        
+        state: present
+
+    - name: start nginx
+      systemd:
+        state: started
+        name: nginx
+        enabled: yes
+
+    - name: download the foo.conf
+      get_url:
+        url: https://github.com/zelar-soft-roboshop/frontend/archive/main.zip
+        dist: /tmp/frontend.zip
+
+    - name: delete the default content
+      file:
+        path: /var/www/html
+        state: absent
+
+    - name: delete nginx site-enabled default file
+      file:
+        path: /etc/nginx/sites-enabled/default
+        state: absent
+
+    - name: delete nginx sites-availabel/default file
+      file:
+        path: /etc/nginx/sites-availabel/default
+        state: absent                    
+
