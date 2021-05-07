@@ -21,4 +21,5 @@
       register: out
     - name: print date
       debug:
-        msg: date = {{out}} 
+      debug:
+        msg: date = {{out.stdout}} 
