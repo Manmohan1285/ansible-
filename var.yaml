@@ -1,0 +1,17 @@
+---
+- name: demo on just print a message
+  hosts: all
+  vars:
+    URL: play.cricket.com
+    PROJECT: cricket
+  vars_files:
+    - example-vars.yml  
+  tasks:
+    - name: print url
+      debug:
+        msg: url = {{URL}}
+    - name: print url from task
+      debug:
+        msg: url = {{URL}}
+      vars:
+        URL: ipl suspended by due to corona.com
