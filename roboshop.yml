@@ -29,14 +29,9 @@
       file:
         path: /var/www/html
         state: absent
-
-    - name: delete nginx site-enabled default file
-      file:
-        path: /etc/nginx/sites-enabled/default
-        state: absent
-
-    - name: delete nginx sites-availabel/default file
-      file:
-        path: /etc/nginx/sites-availabel/default
-        state: absent                    
+      loop:
+        - /var/www/html
+        - /etc/nginx/sites-enabled/default
+        - /etc/nginx/sites-availabel/default
+     
 
