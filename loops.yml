@@ -13,7 +13,7 @@
 
      - name: create servers
        debug:
-         msg: "{{ item.name }}"
+         msg: "{{ item }}"
        loop:
         - name: server1
           disks: 3gb
