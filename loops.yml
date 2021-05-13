@@ -37,6 +37,6 @@
           - apple
           - banana
           - pear
-        loop_control:
-          index_var: my_idx
+       loop_control:
+         index_var: my_idx
 
