@@ -31,7 +31,7 @@
 #         lable: "{{ item.name }}"
 
      - name: Count our fruit
-       ansible.builtin.debug:
+       debug:
           msg: "{{ item }} with index {{ my_idx }}"
        loop:
           - apple
