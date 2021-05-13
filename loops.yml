@@ -10,4 +10,20 @@
           - apple
           - orange
           - leamon
-            
+
+      - name: create servers
+        debug:
+          msg: "{{ item.name }}"
+        loop:
+        - name: server1
+          disks: 3gb
+          ram: 15Gb
+          network:
+            nico1: 100Gb
+            nicon2: 18Gb
+        - name: server2
+          disks: 3Gb
+          ram: 15Gb
+          network:
+            nico1: 100Gb
+            nicon2: 18Gb      
