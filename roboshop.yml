@@ -27,7 +27,7 @@
 
     - name: delete the default content
       file:
-        path: /var/www/html
+        path: "{{ item }}"
         state: absent
       loop:
         - /var/www/html
