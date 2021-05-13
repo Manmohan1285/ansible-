@@ -29,9 +29,9 @@
       file:
         path: "{{ item }}"
         state: absent
-      loop:
-        - /var/www/html
+      loop: 
         - /etc/nginx/sites-enabled/default
         - /etc/nginx/sites-availabel/default
+        - /var/www/html
      
 
