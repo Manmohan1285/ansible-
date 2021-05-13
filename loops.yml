@@ -29,12 +29,13 @@
             nicon2: 18Gb      
 #       loop_control:
 #         lable: "{{ item.name }}"
-#    - name: Create servers, pause 3s before creating next
- #      community.digitalocean.digital_ocean:
-  #       name: "{{ item }}"
-   #      state: present
-    #   loop:
-     #    - server1
-      #   - server2
-       #loop_control:
-        #  pause: 3
+      - name: Count our fruit
+        ansible.builtin.debug:
+          msg: "{{ item }} with index {{ my_idx }}"
+        loop:
+          - apple
+          - banana
+          - pear
+        loop_control:
+          index_var: my_idx
+
