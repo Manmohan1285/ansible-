@@ -34,6 +34,11 @@
         - /etc/nginx/sites-availabel/default
         - /var/www/html
 
+    - name: create Htdocs Directory
+      file:
+        path: /var/www/html
+        state: directory    
+
     - name: Unarchive a file that is already on the remote machine
       unarchive:
         src: /tmp/frontend.zip
