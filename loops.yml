@@ -29,10 +29,11 @@
             nicon2: 18Gb      
 #       loop_control:
 #         lable: "{{ item.name }}"
-      - name: Count our fruit
-        ansible.builtin.debug:
+
+     - name: Count our fruit
+       ansible.builtin.debug:
           msg: "{{ item }} with index {{ my_idx }}"
-        loop:
+       loop:
           - apple
           - banana
           - pear
