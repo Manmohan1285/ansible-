@@ -29,9 +29,9 @@
       ansible.builtin.unarchive:
         src: /tmp/frontend.zip
         dest: /var/www
-        remote_src: yes  
+        remote_src: yes
 
-    - name: delete the default content
+    - name: delete the default content     
       file:
         path: "{{ item }}"
         state: absent
