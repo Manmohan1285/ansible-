@@ -25,6 +25,12 @@
          dest: /tmp/frontend.zip
          force_basic_auth: yes
 
+    - name: Extract the frontend zip file
+      ansible.builtin.unarchive:
+        src: /tmp/frontend.zip
+        dest: /var/www/html
+      remote_src: yes  
+
     - name: delete the default content
       file:
         path: "{{ item }}"
@@ -39,7 +45,7 @@
         path: /var/www/html
         state: directory    
 
-    - name: Unarchive a file that is already on the remote machine
+#    - name: Unarchive a file that is already on the remote machine
       unarchive:
         src: /tmp/frontend.zip
         dest: /var/www
