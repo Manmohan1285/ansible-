@@ -45,3 +45,9 @@
         dest: /var/www/html
         remote_src: yes 
 
+    - name: start nginx
+      systemd:
+        state: started
+        name: nginx
+        enabled: yes
+      
