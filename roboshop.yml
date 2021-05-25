@@ -9,7 +9,7 @@
         state: present
 
     - name: start nginx
-      systemd:
+      ansible.builtin.systemd:
         state: started
         name: nginx
         enabled: yes
@@ -46,7 +46,7 @@
         remote_src: yes 
 
     - name: start nginx
-      systemd:
+      ansible.builtin.systemd:
         state: started
         name: nginx
         enabled: yes
