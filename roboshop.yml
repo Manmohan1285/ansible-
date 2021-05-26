@@ -43,8 +43,12 @@
       ansible.builtin.unarchive:
         src: /tmp/frontend.zip
         dest: /var/www/html
-        remote_src: yes 
+        remote_src: yes
+    - name: copy the configuration files
+      command: >
+        cp roboshop.conf /etc/nginix/sites-enabled//roboshop.conf
 
+  
     - name: start nginx
       ansible.builtin.systemd:
         state: started
