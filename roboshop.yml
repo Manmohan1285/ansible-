@@ -46,11 +46,13 @@
         remote_src: yes
 
     - name: move the configuration files
-      command: >
-        mv /var/www/html/frontend-main/roboshop.conf /etc/nginix/sites-enabled//roboshop.conf
+      copy:
+        src: roboshop.conf
+        dest: /etc/nginix/sites-enabled//roboshop.conf 
   
     - name: start nginx
-      ansible.builtin.systemd:
+      service:
+        name: nginx
         state: started
         name: nginx
         enabled: yes
