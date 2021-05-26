@@ -44,10 +44,11 @@
         src: /tmp/frontend.zip
         dest: /var/www/html
         remote_src: yes
-    - name: copy the configuration files
-      command: >
-        cp roboshop.conf /etc/nginix/sites-enabled//roboshop.conf
 
+    - name: move the configuration files
+      command: >
+        mv /var/www/hml/frontend-main/roboshop.conf /etc/nginix/sites-enabled//roboshop.conf
+      when: stat_result.stat.exists
   
     - name: start nginx
       ansible.builtin.systemd:
