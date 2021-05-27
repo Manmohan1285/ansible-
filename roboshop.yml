@@ -45,15 +45,15 @@
         dest: /var/www/html
         remote_src: yes
 
-    - name: move the configuration files
+    - name: copy the configuration files
       copy:
         src: roboshop.conf
-        dest: /etc/nginix/sites-enabled//roboshop.conf 
+        dest: /etc/nginix/sites-enabled/roboshop.conf 
   
     - name: start nginx
       service:
         name: nginx
-        state: started
+        state: restarted
         name: nginx
         enabled: yes
       
