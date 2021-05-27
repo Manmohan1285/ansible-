@@ -45,7 +45,7 @@
         dest: /var/www/html
         remote_src: yes
 
-    - name: copy the configuration files
+    - name: update Roboshop config file
       copy:
         src: roboshop.conf
         dest: /etc/nginix/sites-enabled/roboshop.conf 
