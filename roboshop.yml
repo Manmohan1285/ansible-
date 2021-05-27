@@ -47,7 +47,7 @@
 
     - name: update Roboshop config file
       copy:
-        src: roboshop.conf
+        src: /var/www/html/frontend-main/roboshop.conf
         dest: /etc/nginix/sites-enabled/roboshop.conf 
         remote_src: yes
     - name: start nginx
