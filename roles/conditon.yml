@@ -1,14 +1,7 @@
----
-- name: Demo on Conditions
-  hosts: all
+- hosts: all
   tasks:
-    - name: Print CentOS
-      debug:
-        msg: Hello CentOS guru
-      when: OS == "CentOS"
-
-    - name: print ubuntu
-      debug:
-        msg: hellow ubuntu guru
-      when: OS == "Ubuntu"
-       
+    - include: Ubuntu.yml
+      when: ansible_os_family == "Ubuntu"
+    
+    - include: RHEL.yml
+      when: ansible_os_family == "RedHat"
