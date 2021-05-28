@@ -2,9 +2,9 @@
 - name: Demo on Conditions
   hosts: all
   tasks:
-    - name: print CentOS
+    - name: Print CentOS
       debug:
-        msg: hello CentOS guru
+        msg: Hello CentOS guru
       when: OS == "CentOS"
 
     - name: print ubuntu
