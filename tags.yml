@@ -8,7 +8,7 @@
         state: latest
         update_cache = yes
 
-    - name: start apache
+    - name: start apache2
       service:
         name: httpd
         state: start
