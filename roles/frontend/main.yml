@@ -1,8 +1,5 @@
----
-- name: set up robho shop project
-  hosts: all
-  tasks:
-    - name: apt update
+
+    - name: install Nginx
       apt:
         name: nginx
         update_cache: yes
@@ -14,7 +11,7 @@
         name: nginx
         enabled: yes
 
-    - name: download the foo.conf
+    - name: download frontend from github
       get_url:
         url: https://github.com/zelar-soft-roboshop/frontend/archive/main.zip
         dest: /tmp/frontend.zip
