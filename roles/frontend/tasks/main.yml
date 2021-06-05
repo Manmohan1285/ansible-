@@ -31,17 +31,17 @@
     password: admin 
 
 - name: delete the default content     
-      file:
-        path: "{{ item }}"
-        state: absent
-      loop: 
-        - /etc/nginx/sites-enabled/default
-        - /etc/nginx/sites-availabel/default
-        - /var/www/html
+  file:
+     path: "{{ item }}"
+     state: absent
+  loop: 
+    - /etc/nginx/sites-enabled/default
+    - /etc/nginx/sites-availabel/default
+    - /var/www/html
 - name: create Htdocs Directory
-      file:
-        path: /var/www/html/vue
-        state: directory
+  file:
+     path: /var/www/html/vue
+     state: directory
 - name: Install npm
   npm:
     name: npm
