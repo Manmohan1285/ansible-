@@ -36,7 +36,7 @@
     - /var/www/html
 - name: create Htdocs Directory
   file:
-     path: /var/www/html/vue
+     path: /var/www/html/vue/frontend
      state: directory
 - name: Install npm
   npm:
@@ -46,12 +46,12 @@
 - name: Extract the frontend zip file
   ansible.builtin.unarchive:
     src: /tmp/frontend-todo.zip
-    dest: /var/www/html/vue
+    dest: /var/www/html/vue/frontend
     remote_src: yes
 
 - name: update config file
   copy:
-    src: /var/www/html/vue/frontend-main/config
+    src: /var/www/html/vue/frontend/frontend-todo
     dest: /etc/nginx/sites-enabled/config 
     remote_src: yes
 - name: start nginx
