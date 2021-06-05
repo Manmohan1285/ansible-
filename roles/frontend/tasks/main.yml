@@ -48,10 +48,10 @@
     global: true
 
 - name: Extract the frontend zip file
-      ansible.builtin.unarchive:
-        src: /tmp/frontend.zip
-        dest: /var/www/html/vue
-        remote_src: yes
+  ansible.builtin.unarchive:
+    src: /tmp/frontend.zip
+    dest: /var/www/html/vue
+    remote_src: yes
 
 - name: update config file
   copy:
