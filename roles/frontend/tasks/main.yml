@@ -43,17 +43,12 @@
     name: npm
     global: true
 
-- name: Extract the frontend zip file
-  ansible.builtin.unarchive:
+- name: Unzip the download content
+  unarchive:
     src: /tmp/frontend-todo.zip
     dest: /var/www/html/vue/frontend
     remote_src: yes
 
-- name: update config file
-  copy:
-    src: /var/www/html/vue/frontend/frontend-todo
-    dest: /etc/nginx/sites-enabled/config 
-    remote_src: yes
 - name: start nginx
   service:
      name: nginx
