@@ -1,28 +1,36 @@
+- name: Install Nginx
+  apt:
+    name: Nginx
+    update_cache: yes
+    state: present
 
-    - name: install Nginx
-      apt:
-        name: nginx
-        update_cache: yes
-        state: present
+- name: start nginx
+  systemd:
+    state: started
+    name: nginx
+    enabled: yes
 
-    - name: start nginx
-      ansible.builtin.systemd:
-        state: started
-        name: nginx
-        enabled: yes
+- name: install nodejs
+  apt: name=nodejs
 
-    - name: download frontend from github
-      get_url:
-        url: https://github.com/zelar-soft-roboshop/frontend/archive/main.zip
-        dest: /tmp/frontend.zip
+- name: Install npm
+  apt:
+    name: npm i
+    update_cache: yes
+    state: present
 
-    - name: Download file and force basic auth
-      get_url:
-         url: https://github.com/zelar-soft-roboshop/frontend/archive/main.zip
-         dest: /tmp/frontend.zip
-         force_basic_auth: yes
+- name: install pm2
+  npm:
+    name: pm2
+            
+- name: Download frontend from nexus
+  get_url:
+    url: http://10.1.2.210:8081/repository/frontend-todo/http://54.204.17.34:8081/repository/frontend-todo/frontend-todo-1.0.1.zip
+    dest: /tmp/frontend.zip
+    username: admin
+    password: admin 
 
-    - name: delete the default content     
+- name: delete the default content     
       file:
         path: "{{ item }}"
         state: absent
@@ -30,27 +38,37 @@
         - /etc/nginx/sites-enabled/default
         - /etc/nginx/sites-availabel/default
         - /var/www/html
-
-    - name: create Htdocs Directory
+- name: create Htdocs Directory
       file:
-        path: /var/www/html
+        path: /var/www/html/vue
         state: directory
+- name: Install npm
+  npm:
+    name: npm
+    global: true
 
-    - name: Extract the frontend zip file
+- name: Extract the frontend zip file
       ansible.builtin.unarchive:
         src: /tmp/frontend.zip
-        dest: /var/www/html
+        dest: /var/www/html/vue
         remote_src: yes
 
-    - name: update Roboshop config file
-      copy:
-        src: /var/www/html/frontend-main/roboshop.conf
-        dest: /etc/nginx/sites-enabled/roboshop.conf 
-        remote_src: yes
-    - name: start nginx
-      service:
-        name: nginx
-        state: restarted
-        name: nginx
-        enabled: yes
-      
+- name: update config file
+  copy:
+    src: /var/www/html/vue/frontend-main/config
+    dest: /etc/nginx/sites-enabled/config 
+    remote_src: yes
+- name: start nginx
+  service:
+     name: nginx
+     state: restarted
+     name: nginx
+     enabled: yes
+
+- name: npm start
+  service:
+     name: npm
+     state: restart
+     name: npm
+     enabled: yes
+
