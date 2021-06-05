@@ -59,7 +59,7 @@
 - name: npm start
   service:
      name: npm
-     state: restarted
+     state: started
      name: npm
      enabled: yes
 
