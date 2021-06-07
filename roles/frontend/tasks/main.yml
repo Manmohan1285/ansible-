@@ -15,15 +15,6 @@
     state: started
     name: nginx
     enabled: yes
-
-- name: install nodejs
-  apt: name=nodejs
-
-- name: Install npm
-  apt:
-    name: npm 
-    update_cache: yes
-    state: present
            
 - name: Download frontend from nexus
   get_url:
@@ -31,11 +22,6 @@
     dest: /root/frontend-todo.zip
     username: admin
     password: admin 
-
-- name: Install npm
-  npm:
-    name: npm
-    global: true
 
 - name: Unzip the download content
   unarchive:
@@ -50,11 +36,12 @@
     replace: '/root/frontend/dist'    
 
 - name: start nginx
-  service:
+  systemd:
      name: nginx
      state: restarted
      name: nginx
      enabled: yes
+
 - name: Replace content
   replace:
     path: /root/config/index.js
