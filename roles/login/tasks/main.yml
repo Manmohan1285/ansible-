@@ -17,7 +17,7 @@
     dest: /root/
     remote_src: yes
 
-- name: Copy login Service file
+- name: Copy login.Service file
   ansible.builtin.copy:
     src: login.service
     dest: /etc/systemd/system/login.service
