@@ -1,3 +1,9 @@
+- name: Install dependencies
+  apt:
+    name: "{{packages}}"
+    update_cache: yes
+    state: present
+
 - name: Install Nginx
   apt:
     name: nginx
@@ -22,22 +28,10 @@
 - name: Download frontend from nexus
   get_url:
     url: http://10.1.2.210:8081/repository/frontend-todo/frontend-todo-1.0.1.zip
-    dest: /tmp/frontend-todo.zip
+    dest: /root/frontend-todo.zip
     username: admin
     password: admin 
 
-- name: delete the default content     
-  file:
-     path: "{{ item }}"
-     state: absent
-  loop: 
-    - /etc/nginx/sites-enabled/default
-    - /etc/nginx/sites-availabel/default
-    - /var/www/html
-- name: create Htdocs Directory
-  file:
-     path: /var/www/html/vue/frontend
-     state: directory
 - name: Install npm
   npm:
     name: npm
@@ -45,9 +39,15 @@
 
 - name: Unzip the download content
   unarchive:
-    src: /tmp/frontend-todo.zip
-    dest: /var/www/html/vue/frontend
+    src: /root/frontend-todo.zip
+    dest: /root/
     remote_src: yes
+
+- name: Replace content
+  replace:
+    path: /etc/nginx/sites-available/default
+    regexp: '/var/www/html'
+    replace: '/root/frontend/dist'    
 
 - name: start nginx
   service:
@@ -55,11 +55,20 @@
      state: restarted
      name: nginx
      enabled: yes
+- name: Replace content
+  replace:
+    path: /root/config/index.js
+    regexp: '127.0.0.1'
+    replace: 'login.sasendereddy.ml'
 
-- name: npm start
-  service:
-     name: npm
-     state: started
-     name: npm
-     enabled: yes
+- name: Replace content
+  replace:
+    path: /root/config/index.js
+    regexp: '127.0.0.2'
+    replace: 'todo.sasendereddy.ml'
+
+- name: To start npm
+  shell: npm start
+  args:
+    chdir: /root/
 
