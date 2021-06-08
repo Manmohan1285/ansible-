@@ -19,7 +19,7 @@
 
 - name: Copy login.Service 
   copy:
-    src: /ansible-/roles/login/files/login.service
+    src: /ansible-/roles/login/files/
     dest: /etc/systemd/system/login.service
     backup: yes
     owner: root
