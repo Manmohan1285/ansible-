@@ -18,7 +18,7 @@
     remote_src: yes
 
 - name: Copy login.Service from files
-  copy:
+  template:
     src: /ansible-/roles/login/files/login.service
     dest: /etc/systemd/system/login.service
     backup: yes
