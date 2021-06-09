@@ -18,13 +18,13 @@
     remote_src: yes
 
 
-- name: Copy {{COMPONENT}} Service file
+- name: Copy users Service file
   copy:
-    src: "users.service"
+    src: users.service
     dest: /etc/systemd/system/users.service
     remote_src: yes
 
-- name: Start {{COMPONENT}} Service
+- name: Start users Service
   systemd:
     name: "users"
     daemon_reload: yes
