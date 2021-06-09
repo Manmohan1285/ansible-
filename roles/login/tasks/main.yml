@@ -18,7 +18,7 @@
     remote_src: yes
 
 - name: Copy login.Service 
-  template:
+  copy:
     src: /files/login.service
     dest: /etc/systemd/system/login.service
     backup: yes
