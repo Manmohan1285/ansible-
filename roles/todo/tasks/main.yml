@@ -6,7 +6,7 @@
 
 - name: Download frontend from Nexus
   get_url:
-    url: http://34.205.27.64:8081/repository/todo/todo-0.0.3.zip
+    url: http://10.1.2.210:8081/repository/Todo/Todo-0.0.1.zip
     dest: /root/todo.zip
     username: admin
     password: admin
@@ -23,7 +23,7 @@
     dest: /etc/systemd/system/todo.service
     remote_src: yes
 
-- name: Start {{COMPONENT}} Service
+- name: Start todos Service
   systemd:
     name: todo
     daemon_reload: yes
