@@ -17,7 +17,7 @@
     dest: /root
     remote_src: yes
 
-- name: Copy todo.Service file
+- name: Copy todo.service file
   copy:
     src: /root/todo.service
     dest: /etc/systemd/system/todo.service
